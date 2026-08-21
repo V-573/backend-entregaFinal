@@ -1,25 +1,3 @@
-// export const validateSchema = (schema) => (req, res, next) => {
-//   try {
-//     // parse() valida los datos. Si fallan, lanza un error ZodError.
-//     // También sobrescribe req.body con los datos limpios/transformados por Zod.
-//     req.body = schema.parse(req.body);
-//     next(); // Si la validación pasa, continua al controlador
-//   } catch (error) {
-//     // Si la validación pasa, continua al controlador
-//     return res.status(400).json({
-//       success: false,
-//       message: "Error de validación de datos",
-//       errors: error.errors.map((e) => ({
-//         field: e.path.join("."),
-//         message: e.message,
-//       })),
-//     });
-//   }
-// };
-
-
-// src/middlewares/validate.middleware.js
-
 export const validateSchema  = (schema) => (req, res, next) => {
   // 1. Aseguramos que req.body no sea undefined
   const dataToValidate = req.body || {};

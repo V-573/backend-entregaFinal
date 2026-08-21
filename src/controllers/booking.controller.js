@@ -5,6 +5,7 @@ import { BookingService } from "../services/bookings.service.js";
 
 import { ServiceMongoDao } from "../dao/mongoDB/ServiceMongoDao.js";
 import { ServiceRepository } from "../repositories/services.repository.js";
+import { success } from "zod";
 
 // Instanciación de Services
 const serviceDao = new ServiceMongoDao();
@@ -75,3 +76,80 @@ export const addServiceToBooking = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+
+export const removeServiceFromBooking = async (req, res) =>{
+  try {
+    const {bid, sid}= req.params;
+    const reservaActualizada = await bookingService.removeServiceFromBooking(bid, sid);
+    const io = req.app.get("socketio");
+    io.emit("reserva_actualizada", reservaActualizada);
+
+    res.status(200).json({
+      success:true,
+      message:"servicio eliminado de la reserva con exito",
+      data:reservaActualizada,
+    });
+
+  } catch (error) {
+    res.status(400).json({success:false, message: error.message});
+  }
+};
+
+export const updateServiceQuantityInBooking = async (req, res) => {
+  try {
+    const { bid, sid } = req.params;
+    const { quantity } = req.body;
+
+    // Validación básica de entrada
+    if (quantity === undefined || Number(quantity) < 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Debe proporcionar una cantidad ('quantity') válida mayor o igual a 0.",
+      });
+    }
+
+    const reservaActualizada = await bookingService.updateServiceQuantity(
+      bid,
+      sid,
+      Number(quantity)
+    );
+
+    // Emitir socket para actualización en tiempo real
+    const io = req.app.get("socketio");
+    io.emit("reserva_actualizada", reservaActualizada);
+
+    res.status(200).json({
+      success: true,
+      message: "Cantidad de servicio actualizada con éxito",
+      data: reservaActualizada,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+export const deleteBooking = async (req, res) =>{
+try {
+  const {bid}= req.params;
+  const reservaEliminada = await bookingService.deleteBooking(bid);
+
+  //emitir evento por webSockets
+const io = req.app.get("socketio");
+    if (io) {
+      io.emit("reserva_eliminada", { id: bid, booking: reservaEliminada });
+    }
+
+    res.status(200).json({
+      success:true,
+      message:"reserva eliminada",
+      data: reservaEliminada,
+    });
+
+
+
+
+} catch (error) {
+  res.status(400).json({success:false, message: error.message});
+}
+}

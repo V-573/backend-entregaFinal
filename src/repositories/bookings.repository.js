@@ -16,4 +16,15 @@ export class BookingRepository {
   async addServiceToBooking(bookingId, booking) {
     return await this.bookingDao.addServiceToBooking(bookingId, booking);
   }
+
+
+async updateBookingServices(bookingId, services) {
+  return await this.bookingDao.updateBookingServices(bookingId, services);
+}
+
+async deleteBooking(bookingId) {
+  return await this.bookingDao.deleteBooking(bookingId);
+}
+
+
 }

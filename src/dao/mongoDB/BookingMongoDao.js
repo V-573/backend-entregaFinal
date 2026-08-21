@@ -23,7 +23,24 @@ export class BookingMongoDao {
     return await BookingModel.findByIdAndUpdate(
       bookingId,
       { services: bookingData.services },
-      { new: true } // Regresa el documento ya actualizado
+      // { new: true } // Regresa el documento ya actualizado deprecado
+      { returnDocument: 'after' }
     ).populate('services.service').lean();
   }
+
+async updateBookingServices(bookingId, services) {
+  return await BookingModel.findByIdAndUpdate(
+    bookingId,
+    { services },
+    // { new: true } deprecado
+    { returnDocument: 'after' }
+  ).populate('services.service').lean();
+}
+
+async deleteBooking(bookingId) {
+  return await BookingModel.findByIdAndDelete(bookingId).lean();
+}
+
+
+
 }
