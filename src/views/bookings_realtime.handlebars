@@ -1,0 +1,40 @@
+<h1>{{title}}</h1>
+
+<div id="contenedor-reservas">
+  {{#if reservas.length}}
+    {{#each reservas}}
+      <article id="reserva-{{this._id}}" class="card">
+        <h2>Cliente: {{this.clientName}}</h2>
+        <p><strong>Email:</strong> {{this.clientEmail}}</p>
+        <p><strong>Fecha y Hora:</strong> {{this.date}} - {{this.time}}</p>
+        <p><strong>Estado:</strong> <span class="badge">{{this.status}}</span></p>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 12px 0;" />
+
+        <h3>Servicios Contratados:</h3>
+        <ul id="servicios-{{this._id}}">
+          {{#if this.services.length}}
+            {{#each this.services}}
+              <li>
+                <strong>{{this.service.name}}</strong> (x{{this.quantity}}) - ${{this.service.price}}
+              </li>
+            {{/each}}
+          {{else}}
+            <li><em>Sin servicios asignados aún.</em></li>
+          {{/if}}
+        </ul>
+
+        <a href="/bookings/{{this._id}}" style="display: inline-block; margin-top: 8px;">Ver detalle &rarr;</a>
+      </article>
+    {{/each}}
+  {{else}}
+    <p id="sin-reservas">No hay reservas creadas por el momento.</p>
+  {{/if}}
+</div>
+
+
+
+<!-- 1. Cargar cliente de Socket.io -->
+<script src="/socket.io/socket.io.js"></script>
+<!-- 🔹 Cargar el script específico para bookings -->
+<script src="/js/realtime-bookings.js"></script>

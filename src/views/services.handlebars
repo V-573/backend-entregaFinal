@@ -1,0 +1,21 @@
+{{! <h1>Servicios disponibles</h1> }}
+<h1>{{title}}</h1>
+
+{{#if services.length}}
+  {{#each services}}
+    <article>
+      <h2>{{name}}</h2>
+      <p>{{description}}</p>
+      <p>Duración: {{duration}} minutos</p>
+      <p>Precio: ${{price}}</p>
+      <p>Categoría: {{category}}</p>
+      <!-- Enlace al detalle del servicio -->
+      <a
+        href="/services/{{_id}}"
+        style="display: inline-block; margin-top: 8px;"
+      >Ver detalle &rarr;</a>
+    </article>
+  {{/each}}
+{{else}}
+  <p>No hay servicios cargados</p>
+{{/if}}

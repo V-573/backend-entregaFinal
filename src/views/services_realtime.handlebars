@@ -1,0 +1,23 @@
+<h1>{{title}}</h1>
+
+<div id="contenedor-servicios">
+  {{#if services.length}}
+    {{#each services}}
+      <article id="servicio-{{this._id}}" class="card">
+        <span class="badge">{{this.category}}</span>
+        <h2>{{this.name}}</h2>
+        <p>{{this.description}}</p>
+        <p><strong>Duración:</strong> {{this.duration}} minutos</p>
+        <p><strong>Precio:</strong> ${{this.price}}</p>
+        <a href="/services/{{this._id}}" style="display: inline-block; margin-top: 8px;">Ver detalle &rarr;</a>
+      </article>
+    {{/each}}
+  {{else}}
+    <p id="sin-servicios">No hay servicios disponibles en este momento.</p>
+  {{/if}}
+</div>
+
+<!-- 1. Cargar cliente de Socket.io -->
+<script src="/socket.io/socket.io.js"></script>
+<!-- 🔹 Cargar el script específico para servicios -->
+<script src="/js/realtime-services.js"></script>

@@ -1,0 +1,26 @@
+<nav>
+  <a href="/services">&larr; Volver a Servicios</a>
+</nav>
+
+{{#if service}}
+  <article class="card">
+    <span class="badge">{{service.category}}</span>
+    <h1>{{service.name}}</h1>
+    <p>{{service.description}}</p>
+    
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 16px 0;" />
+    
+    <p><strong>Duración:</strong> {{service.duration}} minutos</p>
+    <p><strong>Precio:</strong> ${{service.price}}</p>
+    <p>
+      <strong>Estado:</strong> 
+      {{#if service.available}}
+        <span style="color: green;">Disponible</span>
+      {{else}}
+        <span class="error">No disponible</span>
+      {{/if}}
+    </p>
+  </article>
+{{else}}
+  <p class="error">No se encontró la información de este servicio.</p>
+{{/if}}

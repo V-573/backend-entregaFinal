@@ -1,0 +1,30 @@
+<nav>
+  <a href="/bookings">&larr; Volver a reservas</a>
+</nav>
+
+{{#if booking}}
+  <div class="card">
+    <h1>Detalle de Reserva</h1>
+    <p><strong>ID de Reserva:</strong> {{booking._id}}</p>
+    <p><strong>Cliente:</strong> {{booking.clientName}}</p>
+    <p><strong>Fecha:</strong> {{booking.createdAt}}</p>
+  </div>
+
+  <h2>Servicios Incluidos</h2>
+
+  {{#if booking.services.length}}
+    {{#each booking.services}}
+      <article>
+        <h3>{{this.service.name}}</h3>
+        <p>{{this.service.description}}</p>
+        <p><strong>Duración:</strong> {{this.service.duration}} minutos</p>
+        <p><strong>Precio:</strong> ${{this.service.price}}</p>
+      </article>
+    {{/each}}
+  {{else}}
+    <p>Esta reserva aún no tiene servicios agregados.</p>
+  {{/if}}
+
+{{else}}
+  <p class="error">No se encontró la reserva solicitada.</p>
+{{/if}}

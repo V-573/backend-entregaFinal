@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" /> 
+     <title>{{title}}</title>
+<style>
+    body{ max-width: 960px; margin:0 auto; padding: 24px; background: #f7f7f7; color: #222;}
+    nav { margin-bottom: 24px;}
+    nav a{margin-right: 12px; text-decoration: none;}
+    article, .card{ background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin-bottom: 14px;}
+    .badge{ display:inline-block; padding: 4px 8px; border-radius: 999px; background: #e8f4ea;}
+    .error{ color: red}
+</style>
+    </head>
+    <body>
+        <nav>
+            <a href="/services">Servicios</a>
+            <a href="/bookings">Reservas</a>
+            <a href="/realtime-services">Servicios en tiempo real</a>
+            <a href="/realtime-bookings">Reservas en tiempo real</a>
+        </nav>
+       {{{body}}}
+
+<!-- 🔹 Cargar Socket.io desde la ruta automática de Node -->
+    <script src="/socket.io/socket.io.js"></script>
+    
+
+
+     </body>
+</html>
