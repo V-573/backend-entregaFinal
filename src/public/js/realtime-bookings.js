@@ -64,3 +64,25 @@ socket.on('reserva_actualizada', (reservaActualizada) => {
     listaServicios.innerHTML = generarHTMLServicios(reservaActualizada.services);
   }
 });
+
+
+// 3. Escuchar la eliminación de una reserva
+socket.on('reserva_eliminada', (data) => {
+  console.log('⚡ Reserva eliminada vía Socket:', data);
+
+  // Extraemos el id de la reserva recibida desde el backend { id: bid, booking: ... }
+  const reservaId = data.id || data;
+
+  // Buscamos la tarjeta con la misma estructura de id que usaste al crear: reserva-ID
+  const articuloReservado = document.getElementById(`reserva-${reservaId}`);
+
+  if (articuloReservado) {
+    articuloReservado.remove();
+  }
+
+  // Verificamos si la lista quedó vacía para volver a mostrar el mensaje "No hay reservas"
+  const contenedor = document.getElementById('contenedor-reservas');
+  if (contenedor && contenedor.children.length === 0) {
+    contenedor.innerHTML = '<p id="sin-reservas">No hay reservas registradas.</p>';
+  }
+});

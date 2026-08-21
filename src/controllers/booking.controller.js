@@ -136,9 +136,9 @@ try {
 
   //emitir evento por webSockets
 const io = req.app.get("socketio");
-    if (io) {
+    
       io.emit("reserva_eliminada", { id: bid, booking: reservaEliminada });
-    }
+    
 
     res.status(200).json({
       success:true,
