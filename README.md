@@ -38,7 +38,7 @@ Antes de ejecutar la aplicación, debes crear un archivo `.env` en la raíz de t
 PORT=8080
 NODE_ENV=development
 MONGO_URI=mongodb+srv://tu_usuario:tu_contraseña@clusterpoyectoreservas.cy3w0ry.mongodb.net/reservas_db
-
+```
 
 ** Instalación de dependencias **
 Clonar el repositorio:
