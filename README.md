@@ -1,11 +1,11 @@
 
-# Backend API - Sistema de Gestión de Servicios y Reservas - tarea final para curso de Backend 2
+* Backend API - Sistema de Gestión de Servicios y Reservas - tarea final para curso de Backend 2
 
 Este repositorio contiene la API Backend desarrollada en Node.js y Express para la gestión integral de un catálogo de servicios, reservas de clientes, mensajería en tiempo real y vistas dinámicas renderizadas desde el servidor.
 
 ---
 
-## 📋 ¿Qué hace el sistema?
+** 📋 ¿Qué hace el sistema?
 
 El sistema proporciona una arquitectura backend modular construida sobre el patrón MVC/Capas para la administración de:
 
@@ -17,7 +17,7 @@ El sistema proporciona una arquitectura backend modular construida sobre el patr
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+** 🛠️ Tecnologías utilizadas
 
 * **Entorno de ejecución**: Node.js (ES Modules - `import/export`)
 * **Framework Web**: Express.js v5
@@ -30,7 +30,7 @@ El sistema proporciona una arquitectura backend modular construida sobre el patr
 
 ---
 
-## ⚙️ Variables de entorno
+** ⚙️ Variables de entorno
 
 Antes de ejecutar la aplicación, debes crear un archivo `.env` en la raíz de tu proyecto basándote en la siguiente configuración:
 
@@ -40,7 +40,7 @@ NODE_ENV=development
 MONGO_URI=mongodb+srv://tu_usuario:tu_contraseña@clusterpoyectoreservas.cy3w0ry.mongodb.net/reservas_db
 
 
-## Instalación de dependencias ##
+** Instalación de dependencias **
 Clonar el repositorio:
 git clone https://github.com/V-573/backend-entregaFinal
 cd backend-entregafinal
@@ -57,9 +57,9 @@ npm start
 
 la aplicación estará escuchando en http://localhost:8080
 
-##  Enrutamiento y Endpoints de la API ##
+**  Enrutamiento y Endpoints de la API **
 
-### 🛠️ Servicios (`/services`) ### 
+** 🛠️ Servicios (`/services`) **
 
 | Método | Ruta | Middleware / Validación | Descripción |
 | :--- | :--- | :--- | :--- |
@@ -71,7 +71,7 @@ la aplicación estará escuchando en http://localhost:8080
 
 ---
 
-### 📅 Reservas (`/bookings`) ###
+*** 📅 Reservas (`/bookings`) ***
 
 | Método | Ruta | Middleware / Validación | Descripción |
 | :--- | :--- | :--- | :--- |
@@ -85,7 +85,7 @@ la aplicación estará escuchando en http://localhost:8080
 
 ---
 
-### 💬 Mensajería (`/messages`) ### 
+*** 💬 Mensajería (`/messages`) *** 
 
 | Método | Ruta | Descripción |
 | :--- | :--- | :--- |
@@ -94,7 +94,7 @@ la aplicación estará escuchando en http://localhost:8080
 
 ---
 
-### 🖥️ Vistas Renderizadas Handlebars (`/views` o Raíz) ###
+*** 🖥️ Vistas Renderizadas Handlebars (`/views` o Raíz) ***
 
 | Método | Ruta | Descripción |
 | :--- | :--- | :--- |
@@ -108,15 +108,15 @@ la aplicación estará escuchando en http://localhost:8080
 
 
 
-## 🛡️ Esquemas de Validación y Tipos de Datos (Zod) ##
+** 🛡️ Esquemas de Validación y Tipos de Datos (Zod) **
 
 El sistema utiliza **Zod** para la validación estricta de los datos entrantes en el cuerpo (*body*) de las peticiones HTTP. A continuación se detallan las reglas y restricciones para cada recurso:
 
 ---
 
-### 📅 Validación de Reservas (`Bookings`) ###
+*** 📅 Validación de Reservas (`Bookings`) ***
 
-#### `createBookingSchema` (Creación de Reserva) ####
+**** `createBookingSchema` (Creación de Reserva) ****
 
 | Campo | Tipo de Dato | Requerido | Restricciones / Formato | Valor por Defecto |
 | :--- | :--- | :---: | :--- | :--- |
@@ -127,14 +127,14 @@ El sistema utiliza **Zod** para la validación estricta de los datos entrantes e
 | `status` | `Enum` | No | Solo acepta: `'pending'`, `'confirmed'`, `'completed'`, `'cancelled'` | `'pending'` |
 | `services` | `Array<String>` | No | Lista de IDs o textos representativos de servicios | `[]` |
 
-#### `updateBookingSchema` (Actualización de Reserva) ####
+**** `updateBookingSchema` (Actualización de Reserva) ****
 * **Formato**: Todos los campos definidos en `createBookingSchema` pasan a ser opcionales (`.partial()`), permitiendo actualizar únicamente los campos enviados en la petición.
 
 ---
 
-### 🛠️ Validación de Servicios (`Services`) ###
+*** 🛠️ Validación de Servicios (`Services`) ***
 
-#### `createServiceSchema` (Creación de Servicio)  ####
+**** `createServiceSchema` (Creación de Servicio)  ****
 
 | Campo | Tipo de Dato | Requerido | Restricciones / Formato | Valor por Defecto |
 | :--- | :--- | :---: | :--- | :--- |
@@ -145,16 +145,16 @@ El sistema utiliza **Zod** para la validación estricta de los datos entrantes e
 | `category` | `String` | Sí | Mínimo 2 caracteres | N/A |
 | `available` | `Boolean` | No | Valor booleano (`true` o `false`) | `true` |
 
-#### `updateServiceSchema` (Actualización de Servicio)  ####
+**** `updateServiceSchema` (Actualización de Servicio)  ****
 * **Formato**: Todos los campos de `createServiceSchema` son opcionales (`.partial()`), permitiendo actualizaciones parciales del recurso.
 
-## 🧪 Ejemplos de Pruebas y Respuestas (Postman) ##
+** 🧪 Ejemplos de Pruebas y Respuestas (Postman) **
 
 A continuación se muestran ejemplos reales de peticiones HTTP en Postman y las respuestas generadas en formato JSON por el servidor.
 
 ---
 
-### 📥 1. Crear un nuevo servicio ###
+*** 📥 1. Crear un nuevo servicio ***
 
 * **Método**: `POST`
 * **Ruta**: `/services`
