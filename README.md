@@ -6,8 +6,8 @@ Este repositorio contiene la API Backend desarrollada en Node.js y Express para 
 ---
 
 **📋 ¿Qué hace el sistema?**
+El sistema proporciona una arquitectura backend modular construida sobre una **Arquitectura en Capas (Layered Architecture)** para la administración de:
 
-El sistema proporciona una arquitectura backend modular construida sobre el patrón MVC/Capas para la administración de:
 
 * **Servicios (`/api/services`)**: Permite listar, consultar por ID, crear, actualizar y eliminar servicios ofertados. Incluye validación estricta de datos de entrada mediante esquemas de Zod.
 * **Reservas (`/api/bookings`)**: Permite la creación y gestión de reservas, así como la adición, actualización de cantidades y remoción interactiva de servicios dentro de una reserva específica.
