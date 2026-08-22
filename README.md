@@ -107,13 +107,13 @@ la aplicación estará escuchando en http://localhost:8080
 | `GET` | `/bookings/:id` | Renderiza el detalle completo de una reserva |
 | `GET` | `/realtime-bookings` | Vista en tiempo real para monitoreo de reservas |
 
-
+---
 
 **🛡️ Esquemas de Validación y Tipos de Datos (Zod)**
 
 El sistema utiliza **Zod** para la validación estricta de los datos entrantes en el cuerpo (*body*) de las peticiones HTTP. A continuación se detallan las reglas y restricciones para cada recurso:
 
----
+
 
 ***📅 Validación de Reservas (`Bookings`)***
 
@@ -149,11 +149,12 @@ El sistema utiliza **Zod** para la validación estricta de los datos entrantes e
 **** `updateServiceSchema` (Actualización de Servicio)  ****
 * **Formato**: Todos los campos de `createServiceSchema` son opcionales (`.partial()`), permitiendo actualizaciones parciales del recurso.
 
+---
+
 **🧪 Ejemplos de Pruebas y Respuestas (Postman)**
 
 A continuación se muestran ejemplos reales de peticiones HTTP en Postman y las respuestas generadas en formato JSON por el servidor.
 
----
 
 ***📥 1. Crear un nuevo servicio***
 
